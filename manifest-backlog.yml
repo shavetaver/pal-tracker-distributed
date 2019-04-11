@@ -2,11 +2,13 @@ applications:
 - name: tracker-backlog
   path: ./applications/backlog-server/build/libs/backlog-server.jar
   routes:
-  - route: backlog-pal-{UNIQUE_IDENTIFIER}.apps.chicken.pal.pivotal.io
-  memory: 1G
-  instances: 1
-  env:
-    REGISTRATION_SERVER_ENDPOINT: http://FILL_ME_IN
-    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
-  services:
-  - tracker-backlog-database
+    - route: backlog-anithashaveta.cfapps.io
+    memory: 475M
+    disk_quota: 475M
+    instances: 1
+    env:
+      REGISTRATION_SERVER_ENDPOINT: http://registration-anithashaveta.cfapps.io
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: { stack_threads: 100} }'
+      JAVA_OPTS: '-Xms64m -Xmx256m'
+    services:
+      - tracker-backlog-database

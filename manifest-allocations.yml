@@ -2,14 +2,16 @@ applications:
   - name: tracker-allocations
     path: ./applications/allocations-server/build/libs/allocations-server.jar
     routes:
-      - route: allocations-anithashaveta.cfapps.io
+      - route: allocations-anithashaveta2.cfapps.io
     memory: 475M
     disk_quota: 475M
     instances: 1
     env:
+      GRANT_TYPE: client_credentials
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: { stack_threads: 100} }'
       JAVA_OPTS: '-Xms64m -Xmx256m'
     services:
       - tracker-allocations-database
       - tracker-service-registry
       - tracker-circuit-breaker-dashboard
+      - tracker-sso
